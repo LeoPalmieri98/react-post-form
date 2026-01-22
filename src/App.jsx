@@ -1,7 +1,20 @@
 import { useState } from 'react'
 
 function App() {
-  //const [count, setCount] = useState(0)
+  const [datiBlog, setDatiBlog] = useState({
+    authorName: "",
+    titleName: "",
+    bodyName: "",
+    publishedName: false
+  })
+
+  function aggiornaDati(event) {
+    const key = event.target.name;
+    const value = event.target.value;
+    const nuovoBlog = { ...datiBlog };
+    nuovoBlog[key] = value;
+    setDatiBlog(nuovoBlog);
+  }
 
   return (
     <div>
@@ -9,23 +22,18 @@ function App() {
         <div className="row">
           <form>
             <div className="row ">
-
-
               <div>
                 <h1>Blog</h1>
-
               </div>
-
-
 
               <div className="col-12 mt-5">
                 <input
                   className="form-control"
                   placeholder="Autore"
                   type="text"
-                  name="author"
-                  value=""
-                  onChange=""
+                  name="authorName"
+                  value={datiBlog.authorName}
+                  onChange={aggiornaDati}
                 />
               </div>
 
@@ -34,9 +42,9 @@ function App() {
                   className="form-control"
                   placeholder="Title"
                   type="text"
-                  name="title"
-                  value=""
-                  onChange=""
+                  name="titleName"
+                  value={datiBlog.titleName}
+                  onChange={aggiornaDati}
                 />
               </div>
 
@@ -45,24 +53,24 @@ function App() {
                   className="form-control"
                   placeholder="Scrivi qui il tuo post!"
                   type="text"
-                  name="body"
-                  value=""
-                  onChange=""
+                  name="bodyName"
+                  value={datiBlog.bodyName}
+                  onChange={aggiornaDati}
                 />
               </div>
 
-              <div className="col-12 mt-3 d-flex align-items-center">
+              <div className="col-12 mt-5 d-flex align-items-center">
                 <input
                   className="form-check-input me-2"
                   type="checkbox"
-                  name="published"
-                  checked=""
-                  onChange=""
+                  name="publishedName"
+                  checked={datiBlog.publishedName}
+                  onChange={aggiornaDati}
                 />
                 <label>Pubblica il post</label>
+
+                <button className="btn btn-primary ms-4">Invia</button>
               </div>
-
-
 
             </div>
           </form>
